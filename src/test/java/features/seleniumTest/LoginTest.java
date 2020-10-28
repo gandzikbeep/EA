@@ -1,25 +1,21 @@
 package features.seleniumTest;
 
-import framework.base.Base;
+import framework.base.BrowserType;
 import framework.base.DriverContext;
+import framework.base.FrameworkInitialize;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
-import static framework.base.Base.CurrentPage;
 
-public class LoginTest extends Base {
+public class LoginTest extends FrameworkInitialize {
 
 
     @Before
     public void Initialize() {
-        // open browser
-        System.setProperty("webdriver.chrome.driver", "C:\\PLIKI\\DRIVERS\\chromedriver.exe");
-        DriverContext.Driver = new ChromeDriver();
-        DriverContext.Driver.navigate().to("http://automationpractice.com/");
-
+        InitializeBrowser(BrowserType.Chrome);
+        DriverContext.Browser.GoToUrl("http://automationpractice.com/");
     }
 
 
