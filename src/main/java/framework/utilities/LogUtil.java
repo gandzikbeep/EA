@@ -51,8 +51,11 @@ public class LogUtil {
 
         try
         {
-            bufferedWriter.write(message);
-            bufferedWriter.close();
+            formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy:HH_MM_SS");
+            String dateFormat = date.format(formatter);
+            bufferedWriter.write("["+dateFormat + "]" + message);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();  //flush instead close
         }
         catch (Exception e){
 

@@ -17,12 +17,11 @@ public class TestInitialize extends FrameworkInitialize {
     @Before
     public void Initialize() throws IOException {
 
-//        String url = "http://automationpractice.com/index.php";
         ConfigReader.PopulateSettings();
 
-        LogUtil logUtil = new LogUtil();
-        logUtil.CreateLogFile();
-        logUtil.Write("Framework Initialize");
+        Settings.Logs = new LogUtil();
+        Settings.Logs.CreateLogFile();
+        Settings.Logs.Write("Framework Initialize");
 
         InitializeBrowser(Settings.BrowserType);
         DriverContext.Browser.GoToUrl(Settings.AUTConnectionString);

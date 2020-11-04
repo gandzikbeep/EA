@@ -1,5 +1,6 @@
 package features.seleniumTest;
 
+import framework.config.Settings;
 import framework.utilities.ExcelUtil;
 import org.junit.Test;
 import pages.HomePage;
@@ -13,6 +14,7 @@ public class LoginTest extends TestInitialize {
 
     @Test
     public void Login() throws InterruptedException {
+        Settings.Logs.Write("Login method");
 
         CurrentPage = GetInstance(HomePage.class);
         CurrentPage = CurrentPage.As(HomePage.class).ClickOnSignInBtn();
