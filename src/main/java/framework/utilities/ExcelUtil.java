@@ -20,6 +20,8 @@ public class ExcelUtil {
         wrkbook = Workbook.getWorkbook(new File(ExcelSheetPath));
         //For Demo purpose the excel sheet path is hardcoded, but not recommended :)
         wrksheet = wrkbook.getSheet("Sheet1");
+        //Call the Column dictionary to store column name
+        ColumnDictionary();
     }
 
     //Returns the Number of Rows
@@ -29,13 +31,17 @@ public class ExcelUtil {
     }
 
     //Returns the Cell value by taking row and Column values as argument
-    public static String ReadCell(int column,int row)
+    private static String ReadCell(int column,int row)
     {
         return wrksheet.getCell(column,row).getContents();
     }
 
+    public  static String ReadCell(String columnName, int rowNumber){
+        return ReadCell(GetCell(columnName), rowNumber);
+    }
+
     //Create Column Dictionary to hold all the Column Names
-    public static void ColumnDictionary()
+    private static void ColumnDictionary()
     {
         //Iterate through all the columns in the Excel sheet and store the value in Hashtable
         for(int col=0;col < wrksheet.getColumns();col++)
@@ -45,7 +51,7 @@ public class ExcelUtil {
     }
 
     //Read Column Names
-    public static int GetCell(String colName)
+    private static int GetCell(String colName)
     {
         try {
             int value;

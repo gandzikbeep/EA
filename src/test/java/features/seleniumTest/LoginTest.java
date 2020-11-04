@@ -1,22 +1,14 @@
 package features.seleniumTest;
 
-import framework.base.BrowserType;
-import framework.base.DriverContext;
-import framework.base.FrameworkInitialize;
-import org.junit.Before;
+import framework.utilities.ExcelUtil;
 import org.junit.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
 
-public class LoginTest extends FrameworkInitialize {
 
+public class LoginTest extends TestInitialize {
 
-    @Before
-    public void Initialize() {
-        InitializeBrowser(BrowserType.Chrome);
-        DriverContext.Browser.GoToUrl("http://automationpractice.com/");
-    }
 
 
     @Test
@@ -26,7 +18,9 @@ public class LoginTest extends FrameworkInitialize {
         CurrentPage = CurrentPage.As(HomePage.class).ClickOnSignInBtn();
 
         Thread.sleep(2000);
-        CurrentPage.As(LoginPage.class).Login("anna@test.pl", "111111");
+
+        CurrentPage.As(LoginPage.class)
+                .Login(ExcelUtil.ReadCell("UserName", 1), ExcelUtil.ReadCell("Password", 1));
 
     }
 }
